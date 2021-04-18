@@ -40,8 +40,11 @@ int main(void) {
 				else if(tmpA == 0x01) {
 					SM_STATE = SM_Release0;
 					if(tmpC < 9) {
-						++tmpC;
+						tmpC += 1;
 					}
+				}
+				else {
+					SM_STATE = SM_Wait;
 				}
 				break;
 			case SM_Reset:
