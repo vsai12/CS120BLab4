@@ -61,10 +61,14 @@ int main(void) {
                                 break;
 			case SM_RWait:
 				if(tmpA == 0x02) {
-					if(locked)
+					if(locked) {
 						PORTB = 0x01;
-					else
+						locked = false;
+					}
+					else {
 						PORTB = 0x00;
+						locked = true;
+					}
 					SM_STATE = SM_WRelease;
 				}
                                 else if(tmpA == 0x00) 
