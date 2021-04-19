@@ -59,6 +59,11 @@ int main(void) {
 					tmpC = 0;
                                         SM_STATE = SM_Reset;
 				}
+				else if(tmpA == 0x02) {
+					SM_STATE = SM_Release1;
+					if(tmpC > 0)	
+						tmpC -= 1;	
+				}
 				else
 					SM_STATE = SM_Release0;
                                 break;
@@ -69,8 +74,14 @@ int main(void) {
                                         tmpC = 0;
                                         SM_STATE = SM_Reset;
                                 }
+				else if(tmpA == 0x01) {
+					SM_STATE = SM_Release0;
+					if(tmpC < 9) {
+						++tmpC;
+					}
+				}
                                 else
-                                        SM_STATE = SM_Release0;
+                                        SM_STATE = SM_Release1;
                                 break;
 			default:
 				SM_STATE = SM_Wait;
